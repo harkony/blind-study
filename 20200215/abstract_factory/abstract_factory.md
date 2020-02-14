@@ -70,16 +70,16 @@
 
 - Step 1 : create AbstractProduct   
  
-
+```
     public interface Animal {
         String getAnimal();
         String makeSound();
     }
-    
+```  
     
 - Step 2 : create ConcreteProduct 
 
-
+```
     public class Duck implements Animal {
      
         @Override
@@ -92,20 +92,19 @@
             return "Squeks";
         }
     }
-
+```
 
 - Step 3 : create AbstractFactory 
 
-    
+```    
     public interface AbstractFactory<T> {
         T create(String animalType) ;
     }
-    
+```
     
 - Step 4 : create ConcreteFactory 
 
-    
-    
+``` 
     public class AnimalFactory implements AbstractFactory<Animal> {
      
         @Override
@@ -121,11 +120,11 @@
         }
      
     }
-    
+```
     
 - Step 5 : create Factory Generator/Provider  
 
-
+```
     public class FactoryProvider {
         public static AbstractFactory getFactory(String choice){
              
@@ -139,7 +138,7 @@
             return null;
         }
     }
-
+```
     
 ## 예제 2
 - 출처: https://www.tutorialspoint.com/design_pattern/abstract_factory_pattern.htm
@@ -147,15 +146,15 @@
 
 - Step 1 : Create AbstractProduct  
 
-
+```
     public interface Shape {
        void draw();
     }
-    
+```  
     
 - Step 2 : Create ConcreteProduct 
 
-    
+```    
     public class RoundedRectangle implements Shape {
        @Override
        public void draw() {
@@ -176,20 +175,20 @@
           System.out.println("Inside Rectangle::draw() method.");
        }
     }
-   
+```
     
     
 - Step 3 : Create AbstractFactory
 
-
+```
     public abstract class AbstractFactory {
        abstract Shape getShape(String shapeType) ;
     }
- 
+```
  
 - Step 4 : Create ConcreteFactory 
 
-    
+```
     public class ShapeFactory extends AbstractFactory {
        @Override
        public Shape getShape(String shapeType){    
@@ -213,11 +212,11 @@
           return null;
        }
     }
-    
+```
     
 - Step 5 : Create Factory Generator/Provider
 
-    
+``` 
     public class FactoryProducer {
        public static AbstractFactory getFactory(boolean rounded){   
           if(rounded){
@@ -227,11 +226,10 @@
           }
        }
     }
-    
+``` 
     
 - Step 6 : Use it    
-
-
+```
     public class AbstractFactoryPatternDemo {
        public static void main(String[] args) {
           AbstractFactory shapeFactory = FactoryProducer.getFactory(false);
@@ -247,3 +245,4 @@
           
        }
     }
+```

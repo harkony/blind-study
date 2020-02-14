@@ -68,14 +68,15 @@
 - 출처: https://www.baeldung.com/java-abstract-factory-pattern
 ![./abstract_factory_example.png](abstract_factory_example.png)
 
-- Step 1 : create AbstractProduct  
+- Step 1 : create AbstractProduct   
  
 
     public interface Animal {
         String getAnimal();
         String makeSound();
     }
-
+    
+    
 - Step 2 : create ConcreteProduct 
 
 
@@ -92,6 +93,7 @@
         }
     }
 
+
 - Step 3 : create AbstractFactory 
 
     
@@ -99,8 +101,10 @@
         T create(String animalType) ;
     }
     
+    
 - Step 4 : create ConcreteFactory 
 
+    
     
     public class AnimalFactory implements AbstractFactory<Animal> {
      
@@ -118,6 +122,7 @@
      
     }
     
+    
 - Step 5 : create Factory Generator/Provider  
 
 
@@ -134,8 +139,7 @@
             return null;
         }
     }
-    
-    
+
     
 ## 예제 2
 - 출처: https://www.tutorialspoint.com/design_pattern/abstract_factory_pattern.htm
@@ -147,6 +151,7 @@
     public interface Shape {
        void draw();
     }
+    
     
 - Step 2 : Create ConcreteProduct 
 
@@ -171,6 +176,8 @@
           System.out.println("Inside Rectangle::draw() method.");
        }
     }
+   
+    
     
 - Step 3 : Create AbstractFactory
 
@@ -178,6 +185,7 @@
     public abstract class AbstractFactory {
        abstract Shape getShape(String shapeType) ;
     }
+ 
  
 - Step 4 : Create ConcreteFactory 
 
@@ -205,6 +213,7 @@
           return null;
        }
     }
+    
     
 - Step 5 : Create Factory Generator/Provider
 

@@ -12,9 +12,9 @@
 
 # History
 - Week 1 (2020-02-15)
-  - Abstract Factory (harkony)
-  - Builder (Amos)
-  - Factory Method (KingGodSOO)
+  - [Abstract Factory](https://github.com/harkony/design-pattern/blob/master/20200215/abstract_factory/abstract_factory.md) (harkony)
+  - [Builder](https://github.com/harkony/design-pattern/blob/master/20200215/builder_pattern/builder_pattern.md) (Amos)
+  - [Factory Method](https://github.com/harkony/design-pattern/blob/master/20200215/factory_method/factory_method.md) (KingGodSOO)
 
 
   

@@ -11,7 +11,7 @@ https://stackoverflow.com/questions/1673841/examples-of-gof-design-patterns-in-j
 ## 구조
 ![./structure.png](structure.png)
 - product : 팩토리 메소드가 생성하는 객체의 인터페이스를 정의
-- ConcreteProduct : product 클래스에 정의된 인터페이스를 실제로 구현
+- ConcreteProduct : product 인터페이스 구현 클래스
 - Creator : product 타입의 객체를 반환하는 팩토리 메소드를 선언.
 Creator 클래스는 팩토리 메소드를 기본적으로 구현하는데, 이 구현에서는 ConcreteProduct 객체를 반환한다. 또한 product 객체의 생성을위해 팩토리 메소드를 호출한다.
 - ConcreteCreator : 팩토리 메소드를 재정의하여, ConcreteProduct의 인스턴스를 반환.
@@ -24,7 +24,8 @@ template_method의 생성 패턴 버젼으로 볼 수 있다.
 추상 팩토리 패턴은 이 팩토리 메소드를 이용해 구현할 때가 많다. 특히 추상 팩토리 패턴의 '동기'절에서 많이 볼 수 있다.
 
 - prototype<br>
-비슷한 패턴
+prototype패턴은 Creator클래스의 상속을 피하는 대신 초기화 연산이 필요하다.
+factory_method패턴은 초기화 연산이 필요하지 않은 대신 Creator클래스의 상속이 필요하다.
 
 ## 장점과 단점
 ### 장점

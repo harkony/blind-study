@@ -16,5 +16,10 @@
   - [Builder](https://github.com/harkony/design-pattern/blob/master/20200215/builder_pattern/builder_pattern.md) (Amos)
   - [Factory Method](https://github.com/harkony/design-pattern/blob/master/20200215/factory_method/factory_method.md) (KingGodSOO)
 
+- Week 2 (2020-02-23)
+  - [Adapter](https://github.com/harkony/design-pattern/blob/master/20200223/adapter/README.md) (sshlplendid)
+  - [Bridge](https://github.com/harkony/design-pattern/blob/master/20200223/bridge/bridge.md) (harkonv)
+  - [Prototype](https://github.com/harkony/design-pattern/blob/master/20200223/prototype/prototype.md) (KingGodSOO)
+  - [Singleton](https://github.com/harkony/design-pattern/tree/master/20200223/singleton) (Amos)
 
   

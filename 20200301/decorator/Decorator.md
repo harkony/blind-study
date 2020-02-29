@@ -162,7 +162,7 @@
 
 - Concrete Decorator
 
-![Decorator/Untitled%204.png](Decorator/Untitled%204.png)
+![Decorator/armeria_uml.png](Decorator/armeria_uml.png)
 
 - e.g) CircuitBreakerDecorator
     - [https://github.com/line/armeria/blob/master/core/src/main/java/com/linecorp/armeria/client/circuitbreaker/AbstractCircuitBreakerClient.java#L104](https://github.com/line/armeria/blob/master/core/src/main/java/com/linecorp/armeria/client/circuitbreaker/AbstractCircuitBreakerClient.java#L104)

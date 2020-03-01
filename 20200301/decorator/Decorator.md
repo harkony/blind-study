@@ -185,7 +185,7 @@
                                            .newDecorator())
     				.decorator(ConcurrencyLimitingClient.newDecorator(3))
             .decorator(MetricCollectingClient.newDecorator(
-                                NPushV2MeterIdPrefixFunction.of("Design Pattern Server")))
+                                DesignPatternMeterIdPrefixFunction.of("Design Pattern Server")))
             .build();
      
     AggregatedHttpResponse res = client.execute(...).aggregate().join(); // Send requests on and on.

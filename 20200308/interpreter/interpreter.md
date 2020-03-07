@@ -1,14 +1,14 @@
-# Interpreter
+# Interpreter Pattern (해석자 패턴) 
 
-###  의도
+##  의도
 
-- 어떤 언어에 대해, 그 언어의 **문법에 대한 표현을 정의**하고 기술된 **문장을 해석하는 해석자를 함께 정의**  
+- 어떤 언어에 대해, 그 언어의 **문법에 대한 표현(Expression)을 정의**하고 기술된 **문장을 해석하는 해석자(Interpreter)를 함께 정의**  
 - Interpreter pattern is used to defines a grammatical representation for a language and provides an interpreter to deal with this grammar.
 
-### 동기
+## 동기
 - 문장의 표현과 해석을 정의함으로써 알고리즘을 매번 작성할 필요성을 없앤다.
 
-### 예시 - 정규표현식 
+### 예시 - 정규표현식과 패턴 매칭
 
 - 정규 표현식(Regular Expression) 
     - [특정한 규칙을 가진 문자열의 집합을 표현하는 데 사용하는 형식 언어](https://ko.wikipedia.org/wiki/%EC%A0%95%EA%B7%9C_%ED%91%9C%ED%98%84%EC%8B%9D)
@@ -25,6 +25,18 @@
 - LiteralExpression 은 자신이 정의한 문자와 일치하는 정보가 입력 매개변수에 있는지 확인 
 - AlternationExpression 은 입력 매개변수에 따른 대안 문자들과 일치하는 것이 있는지 확인
 - RepetitionExpression 은 입력에 자신이 반복하는 표현에 대한 여러개의 본사본이 존재하는지 확인
+
+```
+    Expression dogsExpression = new ListeralExpression("dogs");
+    Expression catsExpression = new ListeralExpression("cats");
+    Expression catsOrDogsExpression = new AlternationExpression(dogsExpression,catsExpression);
+    Expression repetitionExpression = new RepetitionExpression(catsOrDogsExpression);
+    Expression rainigExpression = new ListeralExpression("raining");
+    Expression finalExpression = new SequenceExpression(raingingExpression, repetitionExpression);
+    
+    boolean result = finalExpression.interpret(context) 
+
+```
     
 ### 활용성
 - 해석이 필요한 언어가 존재하거나 추상구문 트리로서 언어의 문장을 표현하고자 할 때
@@ -73,15 +85,20 @@
         - 추상 구문 트리를 생성 
             - 해석자 패턴은 어떻게 추상 구문 트리를 생성하는 지는 다루지 않음 (파싱 과정에 관한 패턴이 아님)
         - Interpret() 연산을 정의 
-        - Flyweight 패턴을 적용하여 terminal 기호를 공
-### 예제 코드
+        - Flyweight 패턴을 적용하여 terminal 기호를 공유 가능
+        
+### 잘 알려진 사용 예
+- 객체지향 컴파일러 구현
 
+- 가장 일반적인 형태는 복합체 패턴이 사용되는 곳에 해석자 패턴을 사용 가능
+    - 그러나 복합체 패턴으로 정의한 클래스들이 하나의 언어구조를 정의 할때만 해석자 패턴 이라고 한다
+
+
+### 예제 코드
 - Assume 
     - input: “<Number> in Binary” 또는 “<Number> in Hexadecimal”
     - output: “<Number> in Hexadecimal= <Number_Binary_String>” 또는" <Number> in Binary= <Number_Binary_String>” 
 
-
-    
 
 Step 1. Create Interpreter Context 
 ```

@@ -16,7 +16,7 @@
 - Client : Component 인터페이스를 통해 복합 구조 내의 객체를 조작.
 
 ### 트리 구조
-![./tree.png](example_tree.png)
+![./tree.png](tree.png)
 
 ### 구현
 ![./structure.png](structure.png)
@@ -31,7 +31,7 @@
 ![./example_structure.png](example_structure.png)
 
 ### 트리
-![./example_tree.png](tree.png)
+![./example_tree.png](example_tree.png)
 
 ## 결과
 1. 기본 객체와 복합 객체로 구성된 하나의 일관된 클래스 계통을 정의함으로써, 각각의 구분 없이 일관된 프로그래밍 가능
@@ -59,7 +59,7 @@
 
 6. Composite 클래스에서 자식 객체의 순서가 중요할 때는 반복자 패턴을 활용하자
 
-7. 복합구조 내부를 수시로 순회해야 한다면 Composite클래스에 자식객체를 순회하는 정보를 미리 저장한다 - 캐싱(Caching) 전량
+7. 복합구조 내부를 수시로 순회해야 한다면 Composite클래스에 자식객체를 순회하는 정보를 미리 저장한다 - 캐싱(Caching) 전략
 
 8. 가비지 컬렉션의 기능이 제공되지 않는다면, Composite 클래스에서 삭제를 담당한다.
 

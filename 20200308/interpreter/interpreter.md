@@ -39,13 +39,13 @@
     - 문법에 정의한 터미널 기호와 관련된 해석 방법을 구현
 - NonterminalExpression (AlternationExpression, RepetitionExpression, SequenceExpression): 
     - 문법의 오른편에 나타나는 모든 기호에 대해서 클래스를 정의
-- Context: 번역기에 대한 포괄적이 정보를 포함
+- Context: 번역기에 대한 포괄적인 정보를 포함
 - Client: 언어로 정의한 특정 문장을 나타내는 추상 구문 트리. 추상 구문 트리는 NonterminalExpression 과 TerminalExpression 으로 구성
 
     
 ### 협력 방법
 - 사용자는 NonterminalExpression 과 TerminalExpression 인스턴스들로 해당 문장에 대한 추상 구문 트리를 만든다
-- 각 NonterminalExpression 는 또 다른 서브표현식에 대한 interpret()를 이욯하여 자신의 interpret()를 정의.
+- 각 NonterminalExpression 는 또 다른 서브표현식에 대한 interpret()를 이용하여 자신의 interpret()를 정의
 - 각 노드에 정의한 interpret() 연산은 해석자의 상태를 저장하거나 그걸을 알기 위해 문맥(context)를 이용 
   
 ### 결과

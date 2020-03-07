@@ -51,8 +51,8 @@
     - 문법에 정의한 터미널 기호와 관련된 해석 방법을 구현
 - NonterminalExpression (AlternationExpression, RepetitionExpression, SequenceExpression): 
     - 문법의 오른편에 나타나는 모든 기호에 대해서 클래스를 정의
-- Context: 번역기에 대한 포괄적인 정보를 포함
-- Client: 언어로 정의한 특정 문장을 나타내는 추상 구문 트리. 추상 구문 트리는 NonterminalExpression 과 TerminalExpression 으로 구성
+- Context: 번역기에 제공되는 정보를 포함한다
+- Client: 추상 구문 트리로 만든다. interpret() 를 실행한다  
 
     
 ### 협력 방법
@@ -92,6 +92,7 @@
 
 - 가장 일반적인 형태는 복합체 패턴이 사용되는 곳에 해석자 패턴을 사용 가능
     - 그러나 복합체 패턴으로 정의한 클래스들이 하나의 언어구조를 정의 할때만 해석자 패턴 이라고 한다
+    - AST는 Composite pattern의 instance 이다 
 
 
 ### 예제 코드
@@ -100,89 +101,203 @@
     - output: “<Number> in Hexadecimal= <Number_Binary_String>” 또는" <Number> in Binary= <Number_Binary_String>” 
 
 
+Step 0. Create Required Dto
+```
+
+/**
+ * Simple entity / DTO for this example.
+ *
+ * @author GHajba
+ *
+ */
+public class Book {
+
+    private final String title;
+    private final String author;
+
+    public Book(String title, String author) {
+        this.title = title;
+        this.author = author;
+    }
+
+    public String getAuthor() {
+        return this.author;
+    }
+
+    public String getTitel() {
+        return this.title;
+    }
+
+    @Override
+    public String toString() {
+        return MessageFormat.format("''{0}'' by {1}", this.title, this.author);
+    }
+}
+
+/**
+ * A mock web service, actually does nothing useful. In a real world example you would abstract the functionality.
+ *
+ * @author GHajba
+ *
+ */
+public class LeanPubWebService {
+
+    public LeanPubWebService(String endpoint) {
+        // we should initialize our web service here with the endpoint string
+    }
+
+    /**
+     * @return list of all books in the web service
+     */
+    public List<Book> getAllBooks() {
+        return Arrays.asList(
+                new Book("Website Scraping with Python", "Gabor Laszlo Hajba"),
+                new Book("Java 8 in Action", "Raul-Gabriel Urma"),
+                new Book("Python 3 in Anger", "Gabor Laszlo Hajba"),
+                new Book("XML Processing and Website Scraping with Java", "Gabor Laszlo Hajba"));
+    }
+}
+
+
+```
 Step 1. Create Interpreter Context 
 ```
+/**
+ * The context of the interpreter.
+ *
+ * @author GHajba
+ *
+ */
 public class InterpreterContext {
 
-	public String getBinaryFormat(int i){
-		return Integer.toBinaryString(i);
-	}
-	
-	public String getHexadecimalFormat(int i){
-		return Integer.toHexString(i);
-	}
+    private final LeanPubWebService webService;
+
+    /**
+     * Constructor. Here we initialize our mock web service.
+     *
+     * @param endpoint
+     *            the endpoint of the web service
+     */
+    public InterpreterContext(String endpoint) {
+        this.webService = new LeanPubWebService(endpoint);
+    }
+
+    /**
+     * @return all books from the web service
+     */
+    public List<Book> getAllBooks() {
+        return this.webService.getAllBooks();
+    }
 }
 ```
 
 
 Step 2. Create an Expression interface that will consume the interpreter context.
 ```
-public interface Expression {
-	String interpret(InterpreterContext ic);
+/**
+ * This is the base class for all expressions.
+ *
+ * @author GHajba
+ *
+ */
+public abstract class AbstractExpression {
+
+    /**
+     * This function interprets the given context to fit our purposes.
+     *
+     * It does not need to have always a String as a return value -- you can adapt the functionality as you need.
+     *
+     * @param context
+     *            the context of the interpreter
+     * @return an interpreted result
+     */
+    public abstract String interpret(InterpreterContext context);
 }
 ```
 
 Step 3. Create concrete classes implementing the above interface.
 ```
-public class IntToBinaryExpression implements Expression {
+/**
+ * Implementation of the {@link AbstractExpression}. This implementation interprets our book author search expression.
+ *
+ * @author GHajba
+ *
+ */
+public class BookAuthorExpression extends AbstractExpression {
 
-	private int i;
-	
-	public IntToBinaryExpression(int c){
-		this.i=c;
-	}
-	@Override
-	public String interpret(InterpreterContext ic) {
-		return ic.getBinaryFormat(this.i);
-	}
+    private final String searchString;
 
-}
+    public BookAuthorExpression(String searchString) {
+        this.searchString = searchString;
+    }
 
-public class IntToHexExpression implements Expression {
-
-	private int i;
-	
-	public IntToHexExpression(int c){
-		this.i=c;
-	}
-	
-	@Override
-	public String interpret(InterpreterContext ic) {
-		return ic.getHexadecimalFormat(i);
-	}
-
+    @Override
+    public String interpret(InterpreterContext context) {
+        final List<Book> books = context.getAllBooks();
+        final StringBuilder result = new StringBuilder();
+        for (final Book book : books) {
+            if (book.getAuthor().equalsIgnoreCase(this.searchString)) {
+                result.append(book.toString());
+                result.append("\n");
+            }
+        }
+        return result.toString();
+    }
 }
 ```
 Step 4. Create client application that will have the logic to **parse** the user input and pass it to correct expression and then use the output to generate the user response
 ```
-public class InterpreterClient {
+/**
+ * Our client and the main entry point of the application.
+ *
+ * @author GHajba
+ *
+ */
+public class LeanPubClient {
 
-	public InterpreterContext ic;
-	
-	public InterpreterClient(InterpreterContext i){
-		this.ic=i;
-	}
-	
-	public String interpret(String str){
-		Expression exp = null;
-		//create rules for expressions
-		if(str.contains("Hexadecimal")){
-			exp=new IntToHexExpression(Integer.parseInt(str.substring(0,str.indexOf(" "))));
-		}else if(str.contains("Binary")){
-			exp=new IntToBinaryExpression(Integer.parseInt(str.substring(0,str.indexOf(" "))));
-		}else return str;
-		
-		return exp.interpret(ic);
-	}
-	
-	public static void main(String args[]){
-		String str1 = "28 in Binary";
-		String str2 = "28 in Hexadecimal";
-		
-		InterpreterClient ec = new InterpreterClient(new InterpreterContext());
-		System.out.println(str1+"= "+ec.interpret(str1));
-		System.out.println(str2+"= "+ec.interpret(str2));
-	}
+    private final InterpreterContext context;
+
+    public LeanPubClient(InterpreterContext context) {
+        this.context = context;
+    }
+
+    /**
+     * Interprets a string input of the form books by author '<string>'.
+     *
+     * As you can see, the expression is in the following format <searchType> by <searchAttribute> '<value>' where
+     * <searchType> is the type of the search, in this particular case books; <searchAttribute> is the attribute where
+     * to filter, in this example it is author; and <value> is the value of the filter criteria, in this example the
+     * author's name.
+     */
+    public String interpret(String expression) {
+
+        AbstractExpression exp = null;
+
+        final String[] stringParts = expression.split(" ");
+        final String searchType = stringParts[0];
+        final String searchAttribute = stringParts[2];
+
+        final String query = expression.substring(expression.indexOf("'") + 1, expression.lastIndexOf("'"));
+
+        if (searchType.equals("books")) {
+            if (searchAttribute.equals("author")) {
+                exp = new BookAuthorExpression(query);
+            }
+        }
+        if (exp != null) {
+            return exp.interpret(this.context);
+        }
+
+        return "--";
+    }
+
+    public static void main(String... args) {
+        final InterpreterContext context = new InterpreterContext("http://api.leanpub.com/");
+        final LeanPubClient client = new LeanPubClient(context);
+
+        final String result = client.interpret("books by author 'Gabor Laszlo Hajba'");
+        System.out.println(result);
+    }
 }
 ```
 
@@ -196,3 +311,7 @@ public class InterpreterClient {
 [Design Patterns - Interpreter Pattern](https://www.tutorialspoint.com/design_pattern/interpreter_pattern.htm)
 
 [Interpreter Design Pattern in Java](https://www.journaldev.com/1635/interpreter-design-pattern-java)
+
+[Interpreter Design Pattern](https://javabeginnerstutorial.com/design-pattern/interpreter-design-pattern/https://javabeginnerstutorial.com/design-pattern/interpreter-design-pattern/)
+
+[Easy patterns: Interpreter](https://itnext.io/easy-patterns-interpreter-58434c94304d)

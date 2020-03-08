@@ -27,12 +27,12 @@
 - RepetitionExpression 은 입력에 자신이 반복하는 표현에 대한 여러개의 본사본이 존재하는지 확인
 
 ```
-    Expression dogsExpression = new ListeralExpression("dogs");
-    Expression catsExpression = new ListeralExpression("cats");
-    Expression catsOrDogsExpression = new AlternationExpression(dogsExpression,catsExpression);
+    Expression dogsExpression = new LiteralExpression("dogs");
+    Expression catsExpression = new LiteralExpression("cats");
+    Expression catsOrDogsExpression = new AlternationExpression(dogsExpression, catsExpression);
     Expression repetitionExpression = new RepetitionExpression(catsOrDogsExpression);
-    Expression rainigExpression = new ListeralExpression("raining");
-    Expression finalExpression = new SequenceExpression(raingingExpression, repetitionExpression);
+    Expression rainingExpression = new LiteralExpression("raining");
+    Expression finalExpression = new SequenceExpression(rainingExpression, repetitionExpression);
     
     boolean result = finalExpression.interpret(context) 
 

@@ -28,3 +28,9 @@
   - [Facade](https://github.com/harkony/design-pattern/blob/master/20200301/facade/README.md) (sshlplendid)
   - [Flyweight](https://github.com/harkony/design-pattern/blob/master/20200301/flyweight/flyweight.md) (harkony)
   
+- Week 4 (2020-03-08)
+  - [Proxy](https://github.com/harkony/design-pattern/blob/master/20200308/proxy/proxy.md) (KingGodSOO)
+  - [Chain of responsibility](https://github.com/harkony/design-pattern/blob/master/20200308/chainOfResponsiblity/Chain%20of%20responsibility.md) (AmosDoan)
+  - [Command](https://github.com/harkony/design-pattern/blob/master/20200308/command/README.md) (sshlplendid)
+  - [Interpreter](https://github.com/harkony/design-pattern/blob/master/20200308/interpreter/interpreter.md) (harkony)
+  

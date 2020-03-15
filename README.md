@@ -34,3 +34,9 @@
   - [Command](https://github.com/harkony/design-pattern/blob/master/20200308/command/README.md) (sshlplendid)
   - [Interpreter](https://github.com/harkony/design-pattern/blob/master/20200308/interpreter/interpreter.md) (harkony)
   
+  - Week 5 (2020-03-15)
+  - [Iterator](https://github.com/harkony/design-pattern/blob/master/20200315/iterator/iterator.md) (KingGodSOO)
+  - [Mediator](https://github.com/harkony/design-pattern/blob/master/20200315/mediator/Mediator.md) (AmosDoan)
+  - [Memento](https://github.com/harkony/design-pattern/tree/master/20200315/memento) (sshlplendid)
+  - [Observer](https://github.com/harkony/design-pattern/blob/master/20200315/observer/observer.md) (harkony)
+  

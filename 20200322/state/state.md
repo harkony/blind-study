@@ -153,7 +153,7 @@ public class Dirty implements State{
 }
 ```
 
--커피머신 예제 : concreteState에서 상태이전을 담당
+- 커피머신 예제 : concreteState에서 상태이전을 담당
 ```java
 public class CoffeeMachine {
      

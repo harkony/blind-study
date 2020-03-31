@@ -40,3 +40,9 @@
   - [Memento](https://github.com/harkony/design-pattern/tree/master/20200315/memento) (sshlplendid)
   - [Observer](https://github.com/harkony/design-pattern/blob/master/20200315/observer/observer.md) (harkony)
   
+- Week 6 (2020-03-22)
+  - [State](https://github.com/harkony/design-pattern/blob/master/20200322/state/state.md) (KingGodSOO)
+  - [Strategy](https://github.com/harkony/design-pattern/blob/master/20200322/strategy/Strategy.md) (AmosDoan)
+  - [Template Method](https://github.com/harkony/design-pattern/tree/master/20200322/template-method) (sshlplendid)
+  - [Visitor](https://github.com/harkony/design-pattern/blob/master/20200322/visitor/visitor.md) (harkony)
+  

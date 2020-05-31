@@ -6,6 +6,7 @@
 - [AmosDoan] (https://github.com/AmosDoan)
 - [KingGodSOO] (https://github.com/KingGodSOO) 
 - [sshplendid] (https://github.com/sshplendid)
+- [SeungukHan] (https://github.com/SeungukHan)
 
 # Reference 
 - GoF의 Design-Pattern
